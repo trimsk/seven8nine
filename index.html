@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>seven8nine — Digital Studio</title>
+  <link rel="stylesheet" href="css/style.css?v=9">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader__col loader__col--left"></div>
+    <div class="loader__col loader__col--right"></div>
+    <div class="loader__content">
+      <div class="loader__pixel-eight" aria-hidden="true">
+        <div class="px" style="grid-area:1/2/2/5"></div>
+        <div class="px" style="grid-area:2/1/4/2"></div>
+        <div class="px" style="grid-area:2/5/4/6"></div>
+        <div class="px" style="grid-area:4/2/5/5"></div>
+        <div class="px" style="grid-area:5/1/7/2"></div>
+        <div class="px" style="grid-area:5/5/7/6"></div>
+        <div class="px" style="grid-area:7/2/8/5"></div>
+      </div>
+      <div class="loader__counter" id="loaderCounter">0</div>
+    </div>
+  </div>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cursor">
+    <div class="cursor__dot"></div>
+    <div class="cursor__label" id="cursorLabel"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo" data-magnetic>
+        <svg viewBox="0 0 248 56.03" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+          <defs><style>.cls-1{fill:#fff}.cls-2{fill:#aed136}</style></defs>
+          <g><g><path class="cls-1" d="M10.92,56.03c-3.28,0-5.87-.68-7.78-2.04s-2.95-3.26-3.14-5.7H3.79c.19,1.56,.87,2.71,2.06,3.47,1.18,.75,2.91,1.13,5.2,1.13,4.11,0,6.16-1.32,6.16-3.95,0-1.07-.32-1.9-.95-2.48-.63-.58-1.7-1-3.2-1.27l-5.28-.97c-4.38-.81-6.57-2.9-6.57-6.29,0-2.18,.82-3.89,2.46-5.16s3.88-1.89,6.73-1.89,5.27,.64,7.03,1.93,2.77,3.09,3.04,5.4h-3.71c-.3-1.42-.97-2.48-2.02-3.16s-2.51-1.03-4.39-1.03-3.18,.32-4.15,.95c-.97,.63-1.45,1.55-1.45,2.76,0,.91,.32,1.63,.95,2.16,.63,.52,1.66,.92,3.08,1.19l5.24,.97c2.31,.43,4,1.18,5.08,2.26,1.07,1.08,1.61,2.53,1.61,4.35,0,2.34-.85,4.15-2.54,5.44s-4.11,1.93-7.25,1.93Z"/><path class="cls-1" d="M35.31,56.03c-2.47,0-4.62-.52-6.45-1.55-1.83-1.03-3.24-2.51-4.23-4.41-.99-1.91-1.49-4.14-1.49-6.69s.5-4.76,1.49-6.63c.99-1.87,2.39-3.31,4.19-4.33,1.8-1.02,3.91-1.53,6.33-1.53,2.28,0,4.26,.46,5.92,1.39s2.96,2.24,3.89,3.93,1.39,3.69,1.39,6v1.69H26.76c.11,2.77,.92,4.93,2.44,6.49,1.52,1.56,3.54,2.34,6.06,2.34,1.75,0,3.23-.38,4.45-1.13,1.22-.75,2.06-1.84,2.52-3.27h3.87c-.62,2.45-1.87,4.34-3.77,5.68-1.89,1.34-4.24,2.02-7.03,2.02Zm-8.34-15.03h15.72c-.19-2.18-.95-3.87-2.3-5.08-1.34-1.21-3.1-1.81-5.28-1.81s-3.98,.6-5.42,1.81c-1.44,1.21-2.34,2.9-2.72,5.08Z"/><path class="cls-1" d="M56.95,55.54l-10.28-24.18h3.91l8.58,20.47h.16l8.46-20.47h3.79l-10.28,24.18h-4.35Z"/><path class="cls-1" d="M84.08,56.03c-2.47,0-4.62-.52-6.45-1.55-1.83-1.03-3.24-2.51-4.23-4.41-.99-1.91-1.49-4.14-1.49-6.69s.5-4.76,1.49-6.63c.99-1.87,2.39-3.31,4.19-4.33,1.8-1.02,3.91-1.53,6.33-1.53,2.28,0,4.26,.46,5.92,1.39s2.96,2.24,3.89,3.93,1.39,3.69,1.39,6v1.69h-19.58c.11,2.77,.92,4.93,2.44,6.49,1.52,1.56,3.54,2.34,6.06,2.34,1.75,0,3.23-.38,4.45-1.13,1.22-.75,2.06-1.84,2.52-3.27h3.87c-.62,2.45-1.87,4.34-3.77,5.68-1.89,1.34-4.24,2.02-7.03,2.02Zm-8.34-15.03h15.72c-.19-2.18-.95-3.87-2.3-5.08-1.34-1.21-3.1-1.81-5.28-1.81s-3.98,.6-5.42,1.81c-1.44,1.21-2.34,2.9-2.72,5.08Z"/><path class="cls-1" d="M99.08,55.54v-20.15h-2.02v-4.03h4.19v3.63h1.69c.81-1.34,1.94-2.36,3.4-3.04,1.46-.68,3.14-1.03,5.02-1.03,3.03,0,5.45,.89,7.25,2.66,1.8,1.77,2.7,4.14,2.7,7.09v14.87h-3.79v-14.31c0-2.28-.62-4.02-1.87-5.22-1.25-1.2-3.07-1.79-5.46-1.79s-4.18,.6-5.44,1.79c-1.26,1.2-1.89,2.94-1.89,5.22v14.31h-3.79Z"/></g><g><path class="cls-1" d="M163.35,55.54v-20.13h-2.01v-4.03h4.19v3.62h1.69c.8-1.34,1.94-2.35,3.4-3.04,1.46-.68,3.13-1.03,5.01-1.03,3.03,0,5.45,.89,7.24,2.66,1.8,1.77,2.7,4.13,2.7,7.08v14.85h-3.78v-14.29c0-2.28-.62-4.02-1.87-5.21-1.25-1.19-3.07-1.79-5.45-1.79s-4.17,.6-5.43,1.79c-1.26,1.19-1.89,2.93-1.89,5.21v14.29h-3.78Z"/><path class="cls-1" d="M192.11,27.77c-.67,0-1.24-.23-1.71-.71-.47-.47-.7-1.04-.7-1.71s.23-1.24,.7-1.71c.47-.47,1.04-.7,1.71-.7s1.24,.23,1.71,.7c.47,.47,.7,1.04,.7,1.71s-.23,1.24-.7,1.71-1.04,.71-1.71,.71Zm-1.89,27.77V31.39h3.78v24.15h-3.78Z"/><path class="cls-1" d="M199.61,55.54v-20.13h-2.01v-4.03h4.19v3.62h1.69c.8-1.34,1.94-2.35,3.4-3.04,1.46-.68,3.13-1.03,5.01-1.03,3.03,0,5.45,.89,7.24,2.66,1.8,1.77,2.7,4.13,2.7,7.08v14.85h-3.78v-14.29c0-2.28-.62-4.02-1.87-5.21-1.25-1.19-3.07-1.79-5.45-1.79s-4.17,.6-5.43,1.79c-1.26,1.19-1.89,2.93-1.89,5.21v14.29h-3.78Z"/><path class="cls-1" d="M236.97,56.03c-2.47,0-4.62-.52-6.44-1.55-1.83-1.03-3.23-2.5-4.23-4.41-.99-1.91-1.49-4.13-1.49-6.68s.5-4.76,1.49-6.62c.99-1.86,2.39-3.31,4.19-4.33,1.8-1.02,3.9-1.53,6.32-1.53,2.28,0,4.25,.46,5.92,1.39,1.66,.93,2.96,2.23,3.88,3.92s1.39,3.69,1.39,6v1.69h-19.56c.11,2.76,.92,4.93,2.44,6.48,1.52,1.56,3.53,2.33,6.06,2.33,1.74,0,3.23-.38,4.45-1.13,1.22-.75,2.06-1.84,2.52-3.26h3.86c-.62,2.44-1.87,4.34-3.76,5.68-1.89,1.34-4.23,2.01-7.02,2.01Zm-8.33-15.01h15.7c-.19-2.17-.95-3.86-2.29-5.07-1.34-1.21-3.1-1.81-5.27-1.81s-3.98,.6-5.41,1.81c-1.44,1.21-2.34,2.9-2.72,5.07Z"/></g><g><polygon class="cls-2" points="133.11 23.87 133.11 19.89 129.13 19.89 129.13 23.87 129.13 27.85 129.13 31.83 133.11 31.83 133.11 27.85 133.11 23.87"/><polygon class="cls-2" points="149.02 27.85 149.02 31.83 153 31.83 153 27.85 153 23.87 153 19.89 149.02 19.89 149.02 23.87 149.02 27.85"/><polygon class="cls-2" points="133.11 7.96 133.11 3.98 129.13 3.98 129.13 7.96 129.13 11.94 129.13 15.91 133.11 15.91 133.11 11.94 133.11 7.96"/><polygon class="cls-2" points="149.02 3.98 149.02 7.96 149.02 11.94 149.02 15.91 153 15.91 153 11.94 153 7.96 153 3.98 149.02 3.98"/><polygon class="cls-2" points="141.06 3.98 145.04 3.98 149.02 3.98 149.02 0 145.04 0 141.06 0 137.09 0 133.11 0 133.11 3.98 137.09 3.98 141.06 3.98"/><polygon class="cls-2" points="141.06 31.83 137.09 31.83 133.11 31.83 133.11 35.81 137.09 35.81 141.06 35.81 145.04 35.81 149.02 35.81 149.02 31.83 145.04 31.83 141.06 31.83"/><polygon class="cls-2" points="141.06 15.91 137.09 15.91 133.11 15.91 133.11 19.89 137.09 19.89 141.06 19.89 145.04 19.89 149.02 19.89 149.02 15.91 145.04 15.91 141.06 15.91"/></g></g>
+        </svg>
+      </a>
+      <div class="nav__links">
+        <a href="work.html" class="nav__link" data-magnetic>Work</a>
+        <a href="about.html" class="nav__link" data-magnetic>About</a>
+        <a href="#services" class="nav__link" data-magnetic>Services</a>
+      </div>
+      <div class="nav__right">
+        <button class="theme-toggle" id="themeToggle" data-magnetic data-cursor="Mode" aria-label="Toggle theme">
+          <div class="theme-toggle__icon">
+            <div class="theme-toggle__sun">
+              <span></span><span></span><span></span><span></span>
+              <div class="theme-toggle__center"></div>
+            </div>
+            <div class="theme-toggle__moon"></div>
+          </div>
+        </button>
+        <a href="contact.html" class="nav__cta" data-magnetic data-cursor="Let's Talk">
+          <span>Get in Touch</span>
+          <div class="nav__cta-dot"></div>
+        </a>
+        <button class="nav__burger" id="navBurger" aria-label="Menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__inner">
+      <a href="work.html" class="mobile-menu__link"><span data-text="Work">Work</span></a>
+      <a href="about.html" class="mobile-menu__link"><span data-text="About">About</span></a>
+      <a href="#services" class="mobile-menu__link"><span data-text="Services">Services</span></a>
+      <a href="contact.html" class="mobile-menu__link"><span data-text="Contact">Contact</span></a>
+    </div>
+    <div class="mobile-menu__footer">
+      <a href="#">Twitter / X</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Dribbble</a>
+    </div>
+  </div>
+
+  <!-- Hero — Full-width asymmetric typography -->
+  <section class="hero" id="hero">
+    <canvas class="hero__canvas" id="heroCanvas"></canvas>
+    <div class="hero__glow hero__glow--1"></div>
+    <div class="hero__glow hero__glow--2"></div>
+    <div class="hero__overlay" id="heroOverlay"></div>
+    <div class="hero__content">
+      <h1 class="hero__title">
+        <span class="hero__line hero__line--left">
+          <span class="line"><span class="line__inner" data-reveal>We design</span></span>
+        </span>
+        <span class="hero__line hero__line--right">
+          <span class="line"><span class="line__inner" data-reveal>& build digital</span></span>
+        </span>
+        <span class="hero__line hero__line--center">
+          <span class="line"><span class="line__inner" data-reveal><span class="hero__rotating" id="heroRotating">products</span><span class="hero__dot"></span></span></span>
+        </span>
+      </h1>
+      <div class="hero__aside" data-reveal-fade>
+        <p>A non-conventional studio<br>for brands that refuse<br>to blend in.</p>
+        <div class="hero__aside-line"></div>
+        <span class="mono">Scroll to explore</span>
+      </div>
+    </div>
+    <div class="hero__bottom">
+      <div class="container hero__bottom-inner">
+        <div class="hero__info" data-reveal-fade>
+          <span class="mono">Strategy</span>
+          <span class="hero__info-sep"></span>
+          <span class="mono">Design</span>
+          <span class="hero__info-sep"></span>
+          <span class="mono">Code</span>
+        </div>
+        <div class="hero__scroll" data-reveal-fade>
+          <div class="hero__scroll-line">
+            <div class="hero__scroll-progress"></div>
+          </div>
+        </div>
+        <div class="hero__location" data-reveal-fade>
+          <span class="mono">Based globally</span>
+          <span class="hero__info-sep"></span>
+          <span class="mono hero__clock" id="heroClock">00:00:00</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <section class="marquee" data-speed="-1" data-skew>
+    <div class="marquee__track">
+      <span class="marquee__item">Design</span>
+      <span class="marquee__sep">&mdash;</span>
+      <span class="marquee__item">Development</span>
+      <span class="marquee__sep">&mdash;</span>
+      <span class="marquee__item">Strategy</span>
+      <span class="marquee__sep">&mdash;</span>
+      <span class="marquee__item">Branding</span>
+      <span class="marquee__sep">&mdash;</span>
+      <span class="marquee__item">Design</span>
+      <span class="marquee__sep">&mdash;</span>
+      <span class="marquee__item">Development</span>
+      <span class="marquee__sep">&mdash;</span>
+      <span class="marquee__item">Strategy</span>
+      <span class="marquee__sep">&mdash;</span>
+      <span class="marquee__item">Branding</span>
+      <span class="marquee__sep">&mdash;</span>
+      <span class="marquee__item">Design</span>
+      <span class="marquee__sep">&mdash;</span>
+      <span class="marquee__item">Development</span>
+      <span class="marquee__sep">&mdash;</span>
+      <span class="marquee__item">Strategy</span>
+      <span class="marquee__sep">&mdash;</span>
+      <span class="marquee__item">Branding</span>
+      <span class="marquee__sep">&mdash;</span>
+    </div>
+  </section>
+
+  <!-- Showreel CTA -->
+  <section class="reel" id="reel">
+    <div class="reel__inner" data-cursor="Play">
+      <div class="reel__bg" style="background:linear-gradient(135deg,#0a0a0a 0%,#111 50%,#080808 100%)">
+        <div class="reel__grid-overlay"></div>
+      </div>
+      <div class="reel__content" data-reveal-fade>
+        <div class="reel__play">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><polygon points="6,3 20,12 6,21" fill="currentColor"/></svg>
+        </div>
+        <span class="reel__label">Watch Showreel</span>
+        <span class="mono">2024 Highlights &mdash; 01:24</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Selected Work -->
+  <section class="work" id="work">
+    <div class="container">
+      <div class="section-head section-head--split">
+        <div>
+          <span class="mono" data-reveal-fade>( 01 &mdash; Selected Work )</span>
+          <h2 class="section-title">
+            <span class="line"><span class="line__inner" data-reveal>Projects that</span></span>
+            <span class="line"><span class="line__inner" data-reveal>moved the needle</span></span>
+          </h2>
+        </div>
+        <div class="section-head__aside" data-reveal-fade>
+          <p>Every project starts with a question: how do we make this unforgettable? Here's what happened when we found the answer.</p>
+        </div>
+      </div>
+
+      <!-- Featured project — full width -->
+      <a href="project.html" class="work-featured" data-cursor="View">
+        <div class="work-featured__img-wrap">
+          <div class="work-featured__img" style="background:linear-gradient(145deg,#111827 0%,#1e293b 50%,#0f172a 100%)">
+            <div class="work-featured__overlay">
+              <span class="work-featured__num mono">01</span>
+            </div>
+          </div>
+        </div>
+        <div class="work-featured__info">
+          <div>
+            <h3 class="work-featured__title">Nexus Platform</h3>
+            <p class="work-featured__desc">A complete digital ecosystem for the next generation of enterprise collaboration. Strategy, design, and development from zero to launch.</p>
+          </div>
+          <div class="work-featured__meta">
+            <div class="work-featured__tags">
+              <span class="mono">Web Design</span>
+              <span class="mono">Development</span>
+              <span class="mono">Strategy</span>
+            </div>
+            <span class="work-featured__result">+40% engagement</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Grid projects -->
+      <div class="work__grid">
+        <a href="project.html" class="work-card" data-cursor="View">
+          <div class="work-card__img-wrap">
+            <div class="work-card__img" style="background:linear-gradient(145deg,#0c1f1a 0%,#134e3a 50%,#064e3b 100%)">
+              <div class="work-card__overlay">
+                <span class="work-card__category mono">Brand Identity + Strategy</span>
+              </div>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <h3 class="work-card__title">Verde Health</h3>
+            <div class="work-card__meta">
+              <span class="mono">2024</span>
+              <span class="work-card__result">Full rebrand</span>
+            </div>
+          </div>
+        </a>
+        <a href="project.html" class="work-card work-card--offset" data-cursor="View">
+          <div class="work-card__img-wrap">
+            <div class="work-card__img" style="background:linear-gradient(145deg,#1a0e2e 0%,#3b1f6e 50%,#2e1065 100%)">
+              <div class="work-card__overlay">
+                <span class="work-card__category mono">E-Commerce + UI/UX</span>
+              </div>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <h3 class="work-card__title">Aura Store</h3>
+            <div class="work-card__meta">
+              <span class="mono">2023</span>
+              <span class="work-card__result">3x conversion</span>
+            </div>
+          </div>
+        </a>
+        <a href="project.html" class="work-card" data-cursor="View">
+          <div class="work-card__img-wrap">
+            <div class="work-card__img" style="background:linear-gradient(145deg,#1a1a1a 0%,#333 50%,#262626 100%)">
+              <div class="work-card__overlay">
+                <span class="work-card__category mono">Product + Development</span>
+              </div>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <h3 class="work-card__title">Flowstate</h3>
+            <div class="work-card__meta">
+              <span class="mono">2023</span>
+              <span class="work-card__result">0 &rarr; 10K users</span>
+            </div>
+          </div>
+        </a>
+        <a href="project.html" class="work-card work-card--offset" data-cursor="View">
+          <div class="work-card__img-wrap">
+            <div class="work-card__img" style="background:linear-gradient(145deg,#1a0a0a 0%,#4a1a1a 50%,#2d0f0f 100%)">
+              <div class="work-card__overlay">
+                <span class="work-card__category mono">App Design + Branding</span>
+              </div>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <h3 class="work-card__title">Ember Fitness</h3>
+            <div class="work-card__meta">
+              <span class="mono">2023</span>
+              <span class="work-card__result">200K downloads</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="work__cta" data-reveal-fade>
+        <a href="work.html" class="btn-line" data-magnetic>
+          <span>View all projects</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17L17 3M17 3H5M17 3V15" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Divider -->
+  <div class="visual-divider" data-reveal-fade>
+    <div class="visual-divider__line"></div>
+    <div class="visual-divider__glow"></div>
+  </div>
+
+  <!-- Services — Accordion with big numbers -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-head section-head--split">
+        <div>
+          <span class="mono" data-reveal-fade>( 02 &mdash; Services )</span>
+          <h2 class="section-title">
+            <span class="line"><span class="line__inner" data-reveal>What we</span></span>
+            <span class="line"><span class="line__inner" data-reveal>actually do</span></span>
+          </h2>
+        </div>
+        <div class="section-head__aside" data-reveal-fade>
+          <p>End-to-end digital craft. From first pixel to final deploy, we handle the full spectrum so you don't have to stitch vendors together.</p>
+        </div>
+      </div>
+      <div class="services__list">
+        <div class="service-accord" data-accord>
+          <button class="service-accord__head" data-accord-trigger>
+            <span class="service-accord__num mono">01</span>
+            <h3 class="service-accord__title">Design</h3>
+            <div class="service-accord__tags">
+              <span>UI/UX</span><span>Web Design</span><span>Design Systems</span><span>Prototyping</span>
+            </div>
+            <div class="service-accord__icon">
+              <span></span><span></span>
+            </div>
+          </button>
+          <div class="service-accord__body">
+            <div class="service-accord__content">
+              <p>Interfaces that feel inevitable. We obsess over every pixel, interaction, and user flow until the experience is seamless. From wireframes to fully interactive prototypes — we don't just make it pretty, we make it work.</p>
+            </div>
+          </div>
+        </div>
+        <div class="service-accord" data-accord>
+          <button class="service-accord__head" data-accord-trigger>
+            <span class="service-accord__num mono">02</span>
+            <h3 class="service-accord__title">Development</h3>
+            <div class="service-accord__tags">
+              <span>React / Next.js</span><span>Backend</span><span>CMS</span><span>E-commerce</span>
+            </div>
+            <div class="service-accord__icon">
+              <span></span><span></span>
+            </div>
+          </button>
+          <div class="service-accord__body">
+            <div class="service-accord__content">
+              <p>Modern stacks, clean architecture, shipped fast. We build products that scale without the tech debt nightmare. Performance-obsessed, accessible by default, and built to last.</p>
+            </div>
+          </div>
+        </div>
+        <div class="service-accord" data-accord>
+          <button class="service-accord__head" data-accord-trigger>
+            <span class="service-accord__num mono">03</span>
+            <h3 class="service-accord__title">Brand</h3>
+            <div class="service-accord__tags">
+              <span>Identity</span><span>Strategy</span><span>Guidelines</span><span>Naming</span>
+            </div>
+            <div class="service-accord__icon">
+              <span></span><span></span>
+            </div>
+          </button>
+          <div class="service-accord__body">
+            <div class="service-accord__content">
+              <p>Visual identities that stick. We build brands from first principles — not templates. Strategy first, aesthetics second. From naming to full brand systems.</p>
+            </div>
+          </div>
+        </div>
+        <div class="service-accord" data-accord>
+          <button class="service-accord__head" data-accord-trigger>
+            <span class="service-accord__num mono">04</span>
+            <h3 class="service-accord__title">Growth</h3>
+            <div class="service-accord__tags">
+              <span>SEO</span><span>Analytics</span><span>CRO</span><span>Performance</span>
+            </div>
+            <div class="service-accord__icon">
+              <span></span><span></span>
+            </div>
+          </button>
+          <div class="service-accord__body">
+            <div class="service-accord__content">
+              <p>Design that performs. We measure everything and optimize relentlessly — because beautiful websites that don't convert are decoration, not design.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Second marquee (reverse) -->
+  <section class="marquee marquee--reverse" data-skew>
+    <div class="marquee__track marquee__track--reverse">
+      <span class="marquee__item">Figma</span>
+      <span class="marquee__sep">+</span>
+      <span class="marquee__item">React</span>
+      <span class="marquee__sep">+</span>
+      <span class="marquee__item">Next.js</span>
+      <span class="marquee__sep">+</span>
+      <span class="marquee__item">TypeScript</span>
+      <span class="marquee__sep">+</span>
+      <span class="marquee__item">Framer Motion</span>
+      <span class="marquee__sep">+</span>
+      <span class="marquee__item">Supabase</span>
+      <span class="marquee__sep">+</span>
+      <span class="marquee__item">Vercel</span>
+      <span class="marquee__sep">+</span>
+      <span class="marquee__item">Shopify</span>
+      <span class="marquee__sep">+</span>
+      <span class="marquee__item">Figma</span>
+      <span class="marquee__sep">+</span>
+      <span class="marquee__item">React</span>
+      <span class="marquee__sep">+</span>
+      <span class="marquee__item">Next.js</span>
+      <span class="marquee__sep">+</span>
+      <span class="marquee__item">TypeScript</span>
+      <span class="marquee__sep">+</span>
+    </div>
+  </section>
+
+  <!-- Big Text Statement -->
+  <section class="big-text" data-reveal-fade>
+    <div class="big-text__content">
+      We don't do <span class="accent-word">ordinary</span>. We build digital experiences that make people <span class="accent-word">stop scrolling</span>.
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-head">
+        <span class="mono" data-reveal-fade>( 03 &mdash; Process )</span>
+        <h2 class="section-title">
+          <span class="line"><span class="line__inner" data-reveal>How we work</span></span>
+        </h2>
+      </div>
+      <div class="process__grid">
+        <div class="process__step" data-reveal-fade>
+          <span class="process__step-big">01</span>
+          <div class="process__step-head">
+            <span class="process__step-num">01</span>
+            <div class="process__step-line"></div>
+          </div>
+          <h3 class="process__step-title">Discover</h3>
+          <p class="process__step-desc">We dig deep into your brand, audience, and goals. No generic questionnaires — real conversations that surface the strategy.</p>
+        </div>
+        <div class="process__step" data-reveal-fade>
+          <span class="process__step-big">02</span>
+          <div class="process__step-head">
+            <span class="process__step-num">02</span>
+            <div class="process__step-line"></div>
+          </div>
+          <h3 class="process__step-title">Design</h3>
+          <p class="process__step-desc">Concept to high-fidelity, fast. We iterate with you in real-time — no disappearing for weeks with a big reveal.</p>
+        </div>
+        <div class="process__step" data-reveal-fade>
+          <span class="process__step-big">03</span>
+          <div class="process__step-head">
+            <span class="process__step-num">03</span>
+            <div class="process__step-line"></div>
+          </div>
+          <h3 class="process__step-title">Build</h3>
+          <p class="process__step-desc">Pixel-perfect development with performance baked in. We ship fast, test obsessively, and iterate until it's right.</p>
+        </div>
+        <div class="process__step" data-reveal-fade>
+          <span class="process__step-big">04</span>
+          <div class="process__step-head">
+            <span class="process__step-num">04</span>
+            <div class="process__step-line"></div>
+          </div>
+          <h3 class="process__step-title">Launch & Grow</h3>
+          <p class="process__step-desc">Going live is just the beginning. We monitor, optimize, and scale what works. Ongoing support, no retainer games.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Divider -->
+  <div class="visual-divider" data-reveal-fade>
+    <div class="visual-divider__line"></div>
+    <div class="visual-divider__glow"></div>
+  </div>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-head">
+        <span class="mono" data-reveal-fade>( 04 &mdash; About )</span>
+      </div>
+      <div class="about__hero-text">
+        <h2 class="about__title">
+          <span class="line"><span class="line__inner" data-reveal>We're the studio</span></span>
+          <span class="line"><span class="line__inner" data-reveal>you call when <em>good enough</em></span></span>
+          <span class="line"><span class="line__inner" data-reveal>isn't enough<span class="hero__dot"></span></span></span>
+        </h2>
+      </div>
+      <div class="about__layout">
+        <div class="about__left">
+          <div class="about__text" data-reveal-fade>
+            <p>No bloated teams. No endless meetings. No decks that go nowhere. Just a tight crew of senior designers and engineers who ship real work for brands that give a damn.</p>
+            <p>We started seven8nine because we were tired of the agency model. Too slow, too expensive, too safe. We wanted to build a studio where craft comes first and every project gets our best people — not juniors learning on your dime.</p>
+          </div>
+          <div class="about__capabilities" data-reveal-fade>
+            <h4 class="mono">Capabilities</h4>
+            <div class="about__cap-grid">
+              <span>UI/UX Design</span>
+              <span>Web Development</span>
+              <span>Brand Identity</span>
+              <span>Design Systems</span>
+              <span>E-Commerce</span>
+              <span>SEO & Growth</span>
+              <span>Motion Design</span>
+              <span>Prototyping</span>
+            </div>
+          </div>
+        </div>
+        <div class="about__right">
+          <div class="about__stats">
+            <div class="about__stat" data-reveal-fade>
+              <span class="about__stat-num" data-count="50">0</span><span class="about__stat-plus">+</span>
+              <span class="about__stat-label mono">Projects shipped</span>
+            </div>
+            <div class="about__stat" data-reveal-fade>
+              <span class="about__stat-num" data-count="30">0</span><span class="about__stat-plus">+</span>
+              <span class="about__stat-label mono">Happy clients</span>
+            </div>
+            <div class="about__stat" data-reveal-fade>
+              <span class="about__stat-num" data-count="5">0</span>
+              <span class="about__stat-label mono">Years running</span>
+            </div>
+          </div>
+          <div class="about__manifesto" data-reveal-fade>
+            <h4 class="mono">Our principles</h4>
+            <div class="about__manifesto-item">
+              <span class="mono">01</span>
+              <p>Craft over speed. We'd rather ship one great thing than ten mediocre ones.</p>
+            </div>
+            <div class="about__manifesto-item">
+              <span class="mono">02</span>
+              <p>Opinions included. We're partners, not pixel pushers. Expect honest feedback.</p>
+            </div>
+            <div class="about__manifesto-item">
+              <span class="mono">03</span>
+              <p>Results matter. Beautiful design that doesn't perform is decoration, not design.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-head section-head--split">
+        <div>
+          <span class="mono" data-reveal-fade>( 05 &mdash; Kind Words )</span>
+          <h2 class="section-title">
+            <span class="line"><span class="line__inner" data-reveal>What they say</span></span>
+          </h2>
+        </div>
+        <div class="section-head__aside" data-reveal-fade>
+          <p>Don't take our word for it. Hear from the teams we've worked with.</p>
+        </div>
+      </div>
+    </div>
+    <div class="testimonials__wrap">
+      <div class="testimonials__track" data-cursor="Drag">
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">
+            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+          </div>
+          <blockquote>
+            <p>seven8nine transformed our digital presence. The attention to detail and strategic thinking behind every decision was remarkable. We went from invisible to industry-leading.</p>
+            <footer>
+              <strong>James Dalton</strong>
+              <span class="mono">CEO, Nexus</span>
+            </footer>
+          </blockquote>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">
+            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+          </div>
+          <blockquote>
+            <p>Felt like an in-house team from day one. They understood our brand instantly and our conversion rate tripled after launch. Best investment we've made.</p>
+            <footer>
+              <strong>Sarah Reynolds</strong>
+              <span class="mono">Founder, Verde Health</span>
+            </footer>
+          </blockquote>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">
+            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+          </div>
+          <blockquote>
+            <p>Fast, precise, and incredibly creative. They shipped our entire platform in record time without cutting corners. The codebase is a dream to maintain.</p>
+            <footer>
+              <strong>Michael Kim</strong>
+              <span class="mono">CTO, Flowstate</span>
+            </footer>
+          </blockquote>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">
+            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+          </div>
+          <blockquote>
+            <p>Their approach is refreshingly different. No fluff, no wasted time — just exceptional work delivered with precision. Already planning our next project together.</p>
+            <footer>
+              <strong>Elena Voss</strong>
+              <span class="mono">CMO, Aura</span>
+            </footer>
+          </blockquote>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">
+            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+          </div>
+          <blockquote>
+            <p>We needed a partner who could move fast without sacrificing quality. seven8nine delivered a product that exceeded every expectation we had.</p>
+            <footer>
+              <strong>David Park</strong>
+              <span class="mono">CPO, Ember Fitness</span>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact__inner">
+        <div class="section-head">
+          <span class="mono" data-reveal-fade>( 06 &mdash; Let's Work Together )</span>
+        </div>
+        <h2 class="contact__title">
+          <span class="line"><span class="line__inner" data-reveal>Got a project?</span></span>
+          <span class="line"><span class="line__inner" data-reveal>Let's talk<span class="hero__dot"></span></span></span>
+        </h2>
+        <div class="contact__body" data-reveal-fade>
+          <p class="contact__desc">We're always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+        </div>
+        <a href="mailto:hello@seven8nine.com" class="contact__link" data-magnetic data-cursor="Send">
+          <span class="contact__link-text" data-reveal-fade>hello@seven8nine.com</span>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M4 28L28 4M28 4H8M28 4V24" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+        <div class="contact__grid" data-reveal-fade>
+          <div class="contact__col">
+            <h4 class="mono">Follow us</h4>
+            <div class="contact__socials">
+              <a href="#" class="contact__social" data-magnetic>Twitter / X</a>
+              <a href="#" class="contact__social" data-magnetic>LinkedIn</a>
+              <a href="#" class="contact__social" data-magnetic>Dribbble</a>
+              <a href="#" class="contact__social" data-magnetic>Instagram</a>
+            </div>
+          </div>
+          <div class="contact__col">
+            <h4 class="mono">Location</h4>
+            <p class="contact__detail">Remote-first, globally distributed.<br>Based in Europe & North America.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__left">
+          <svg viewBox="0 0 248 56.03" xmlns="http://www.w3.org/2000/svg" class="logo-svg logo-svg--sm">
+            <defs><style>.cls-1f{fill:#fff}.cls-2f{fill:#aed136}</style></defs>
+            <g><g><path class="cls-1f" d="M10.92,56.03c-3.28,0-5.87-.68-7.78-2.04s-2.95-3.26-3.14-5.7H3.79c.19,1.56,.87,2.71,2.06,3.47,1.18,.75,2.91,1.13,5.2,1.13,4.11,0,6.16-1.32,6.16-3.95,0-1.07-.32-1.9-.95-2.48-.63-.58-1.7-1-3.2-1.27l-5.28-.97c-4.38-.81-6.57-2.9-6.57-6.29,0-2.18,.82-3.89,2.46-5.16s3.88-1.89,6.73-1.89,5.27,.64,7.03,1.93,2.77,3.09,3.04,5.4h-3.71c-.3-1.42-.97-2.48-2.02-3.16s-2.51-1.03-4.39-1.03-3.18,.32-4.15,.95c-.97,.63-1.45,1.55-1.45,2.76,0,.91,.32,1.63,.95,2.16,.63,.52,1.66,.92,3.08,1.19l5.24,.97c2.31,.43,4,1.18,5.08,2.26,1.07,1.08,1.61,2.53,1.61,4.35,0,2.34-.85,4.15-2.54,5.44s-4.11,1.93-7.25,1.93Z"/><path class="cls-1f" d="M35.31,56.03c-2.47,0-4.62-.52-6.45-1.55-1.83-1.03-3.24-2.51-4.23-4.41-.99-1.91-1.49-4.14-1.49-6.69s.5-4.76,1.49-6.63c.99-1.87,2.39-3.31,4.19-4.33,1.8-1.02,3.91-1.53,6.33-1.53,2.28,0,4.26,.46,5.92,1.39s2.96,2.24,3.89,3.93,1.39,3.69,1.39,6v1.69H26.76c.11,2.77,.92,4.93,2.44,6.49,1.52,1.56,3.54,2.34,6.06,2.34,1.75,0,3.23-.38,4.45-1.13,1.22-.75,2.06-1.84,2.52-3.27h3.87c-.62,2.45-1.87,4.34-3.77,5.68-1.89,1.34-4.24,2.02-7.03,2.02Zm-8.34-15.03h15.72c-.19-2.18-.95-3.87-2.3-5.08-1.34-1.21-3.1-1.81-5.28-1.81s-3.98,.6-5.42,1.81c-1.44,1.21-2.34,2.9-2.72,5.08Z"/><path class="cls-1f" d="M56.95,55.54l-10.28-24.18h3.91l8.58,20.47h.16l8.46-20.47h3.79l-10.28,24.18h-4.35Z"/><path class="cls-1f" d="M84.08,56.03c-2.47,0-4.62-.52-6.45-1.55-1.83-1.03-3.24-2.51-4.23-4.41-.99-1.91-1.49-4.14-1.49-6.69s.5-4.76,1.49-6.63c.99-1.87,2.39-3.31,4.19-4.33,1.8-1.02,3.91-1.53,6.33-1.53,2.28,0,4.26,.46,5.92,1.39s2.96,2.24,3.89,3.93,1.39,3.69,1.39,6v1.69h-19.58c.11,2.77,.92,4.93,2.44,6.49,1.52,1.56,3.54,2.34,6.06,2.34,1.75,0,3.23-.38,4.45-1.13,1.22-.75,2.06-1.84,2.52-3.27h3.87c-.62,2.45-1.87,4.34-3.77,5.68-1.89,1.34-4.24,2.02-7.03,2.02Zm-8.34-15.03h15.72c-.19-2.18-.95-3.87-2.3-5.08-1.34-1.21-3.1-1.81-5.28-1.81s-3.98,.6-5.42,1.81c-1.44,1.21-2.34,2.9-2.72,5.08Z"/><path class="cls-1f" d="M99.08,55.54v-20.15h-2.02v-4.03h4.19v3.63h1.69c.81-1.34,1.94-2.36,3.4-3.04,1.46-.68,3.14-1.03,5.02-1.03,3.03,0,5.45,.89,7.25,2.66,1.8,1.77,2.7,4.14,2.7,7.09v14.87h-3.79v-14.31c0-2.28-.62-4.02-1.87-5.22-1.25-1.2-3.07-1.79-5.46-1.79s-4.18,.6-5.44,1.79c-1.26,1.2-1.89,2.94-1.89,5.22v14.31h-3.79Z"/></g><g><polygon class="cls-2f" points="133.11 23.87 133.11 19.89 129.13 19.89 129.13 23.87 129.13 27.85 129.13 31.83 133.11 31.83 133.11 27.85 133.11 23.87"/><polygon class="cls-2f" points="149.02 27.85 149.02 31.83 153 31.83 153 27.85 153 23.87 153 19.89 149.02 19.89 149.02 23.87 149.02 27.85"/><polygon class="cls-2f" points="133.11 7.96 133.11 3.98 129.13 3.98 129.13 7.96 129.13 11.94 129.13 15.91 133.11 15.91 133.11 11.94 133.11 7.96"/><polygon class="cls-2f" points="149.02 3.98 149.02 7.96 149.02 11.94 149.02 15.91 153 15.91 153 11.94 153 7.96 153 3.98 149.02 3.98"/><polygon class="cls-2f" points="141.06 3.98 145.04 3.98 149.02 3.98 149.02 0 145.04 0 141.06 0 137.09 0 133.11 0 133.11 3.98 137.09 3.98 141.06 3.98"/><polygon class="cls-2f" points="141.06 31.83 137.09 31.83 133.11 31.83 133.11 35.81 137.09 35.81 141.06 35.81 145.04 35.81 149.02 35.81 149.02 31.83 145.04 31.83 141.06 31.83"/><polygon class="cls-2f" points="141.06 15.91 137.09 15.91 133.11 15.91 133.11 19.89 137.09 19.89 141.06 19.89 145.04 19.89 149.02 19.89 149.02 15.91 145.04 15.91 141.06 15.91"/></g></g>
+          </svg>
+          <span class="mono footer__copy">&copy; 2024 seven8nine. All rights reserved.</span>
+        </div>
+        <div class="footer__right">
+          <a href="#hero" class="footer__back-top" data-magnetic>
+            <span class="mono">Back to top</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 14V2M8 2L2 8M8 2L14 8" stroke="currentColor" stroke-width="1.5"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=9"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.grafit.agency)",
+      "WebFetch(domain:www.growmodo.com)",
+      "mcp__Claude_Preview__preview_start",
+      "WebFetch(domain:www.awwwards.com)",
+      "WebFetch(domain:aries-agency.webflow.io)",
+      "WebFetch(domain:analogueagency.com)",
+      "WebFetch(domain:springboards.ai)",
+      "WebFetch(domain:flair.digital)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
