@@ -20,12 +20,11 @@
   --cursor-dot: #fff;
   --cursor-label: #000;
   --font: 'Inter', -apple-system, sans-serif;
-  --mono: 'Space Mono', monospace;
+  --mono: 'Inter', -apple-system, sans-serif;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
-  --serif: 'DM Serif Display', Georgia, serif;
 }
 
 /* === LIGHT MODE === */
@@ -76,7 +75,7 @@ button { cursor: none; font-family: inherit; }
 ::selection { background: var(--accent); color: var(--bg); }
 
 .container { max-width: 1400px; margin: 0 auto; padding: 0 48px; }
-.mono { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); font-weight: 400; }
+.mono { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); font-weight: 500; }
 
 /* === LOADER === */
 .loader { position: fixed; inset: 0; z-index: 9999; display: flex; pointer-events: none; }
@@ -482,6 +481,7 @@ button { cursor: none; font-family: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 32px;
   overflow: hidden;
 }
 .visual-divider__line {
@@ -563,7 +563,7 @@ button { cursor: none; font-family: inherit; }
 .about { padding: 160px 0; position: relative; }
 .about__hero-text { margin-bottom: 80px; }
 .about__title { font-size: clamp(32px, 4.5vw, 64px); font-weight: 200; letter-spacing: -0.05em; line-height: 1.1; }
-.about__title em { font-family: var(--serif); font-style: italic; color: var(--accent); }
+.about__title em { font-style: italic; color: var(--accent); font-weight: 300; }
 
 .about__layout { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
 .about__text p { font-size: 14px; color: var(--text-2); line-height: 1.85; margin-bottom: 20px; font-weight: 300; }
@@ -670,6 +670,227 @@ button { cursor: none; font-family: inherit; }
 .footer__back-top:hover .mono { color: var(--accent); }
 .footer__back-top svg { color: var(--text-3); transition: color 0.3s, transform 0.3s var(--ease); }
 .footer__back-top:hover svg { color: var(--accent); transform: translateY(-3px); }
+
+/* === VIVID BRAND ELEMENTS === */
+
+/* Pixel-8 section markers — small pixel grid before section labels */
+.section-head .mono::before {
+  content: '';
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: var(--accent);
+  margin-right: 10px;
+  vertical-align: middle;
+  animation: pixelPulse 2s ease-in-out infinite alternate;
+}
+
+/* Corner brackets on cards — brand motif */
+.work-item::before,
+.work-item::after,
+.testimonial-card::before,
+.testimonial-card::after {
+  content: '';
+  position: absolute;
+  width: 16px; height: 16px;
+  border-color: var(--accent);
+  border-style: solid;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  z-index: 2;
+}
+.work-item::before { top: 16px; left: 16px; border-width: 1px 0 0 1px; transform: translate(-4px, -4px); }
+.work-item::after { bottom: 16px; right: 16px; border-width: 0 1px 1px 0; transform: translate(4px, 4px); }
+.work-item:hover::before,
+.work-item:hover::after {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.testimonial-card::before { top: 12px; left: 12px; border-width: 1px 0 0 1px; transform: translate(-4px, -4px); }
+.testimonial-card::after { bottom: 12px; right: 12px; border-width: 0 1px 1px 0; transform: translate(4px, 4px); }
+.testimonial-card:hover::before,
+.testimonial-card:hover::after {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Accent stripe — bold horizontal bar for emphasis */
+.accent-stripe {
+  width: 48px; height: 3px;
+  background: var(--accent);
+  margin-bottom: 24px;
+}
+
+/* Vivid section accent — full-width accent band */
+.section-accent-band {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent) 20%, var(--accent) 80%, transparent);
+  opacity: 0.4;
+}
+
+/* Pixel grid decoration — corner element */
+.pixel-decoration {
+  display: grid;
+  grid-template-columns: repeat(3, 4px);
+  grid-template-rows: repeat(3, 4px);
+  gap: 2px;
+}
+.pixel-decoration .px {
+  background: var(--accent);
+  opacity: 0.3;
+}
+.pixel-decoration .px:nth-child(2),
+.pixel-decoration .px:nth-child(4),
+.pixel-decoration .px:nth-child(6),
+.pixel-decoration .px:nth-child(8) {
+  opacity: 0;
+}
+.pixel-decoration .px:nth-child(5) {
+  opacity: 0.8;
+}
+
+/* Hero accent bar */
+.hero__content::before {
+  content: '';
+  display: block;
+  width: 48px; height: 3px;
+  background: var(--accent);
+  margin-bottom: 32px;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: opacity 0.6s 0.8s, transform 0.8s 0.8s var(--ease);
+}
+body.loaded .hero__content::before {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Bold accent background on contact section */
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: var(--accent);
+  opacity: 0.15;
+}
+
+/* Process step accent hover bar */
+.process__step::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.6s var(--ease);
+}
+.process__step:hover::after {
+  width: 100%;
+}
+
+/* Service accordion active accent bar */
+.service-accord::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 100%;
+  background: var(--accent);
+  opacity: 0.04;
+  transition: width 0.6s var(--ease);
+  z-index: -1;
+}
+.service-accord.active::before {
+  width: 100%;
+}
+.service-accord {
+  position: relative;
+}
+
+/* Work item accent index line */
+.work-item__index::after {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--accent);
+  margin-left: 12px;
+  vertical-align: middle;
+  opacity: 0.5;
+}
+
+/* Footer accent top line */
+.footer {
+  border-top: 2px solid var(--accent) !important;
+  border-image: linear-gradient(90deg, var(--accent) 0%, var(--accent) 30%, var(--border) 30%) 1;
+}
+
+/* Nav logo pixel accent dot */
+.nav__inner .logo-svg {
+  position: relative;
+}
+
+/* Marquee accent separators */
+.marquee__sep {
+  color: var(--accent) !important;
+  opacity: 0.6 !important;
+}
+
+/* Vivid accent on hero rotating word underline */
+.hero__rotating::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 100%; height: 2px;
+  background: var(--accent);
+  opacity: 0.4;
+}
+
+/* Section title accent word highlight */
+.section-title .accent-word {
+  color: var(--accent);
+  position: relative;
+}
+.section-title .accent-word::after {
+  content: '';
+  position: absolute;
+  bottom: 2px; left: 0;
+  width: 100%; height: 6px;
+  background: var(--accent);
+  opacity: 0.08;
+  z-index: -1;
+}
+
+/* Vivid stat numbers */
+.about__stat-num {
+  position: relative;
+}
+.about__stat-num::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 0;
+  width: 100%; height: 8px;
+  background: var(--accent);
+  opacity: 0.08;
+  z-index: -1;
+}
+
+/* Work result vivid badge */
+.work-item__result {
+  position: relative;
+  padding: 4px 12px;
+  border: 1px solid var(--accent);
+  display: inline-block;
+  background: rgba(174, 209, 54, 0.04);
+}
+
+/* Testimonial accent line animated */
+.testimonial-card p::before {
+  transition: width 0.6s var(--ease);
+}
+.testimonial-card:hover p::before {
+  width: 48px;
+}
 
 /* === SCROLL PARALLAX === */
 [data-speed] { transition: transform 0.05s linear; }
