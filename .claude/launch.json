@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "seven8nine",
-      "runtimeExecutable": "/usr/bin/python3",
-      "runtimeArgs": ["-m", "http.server", "3000", "--directory", "/Users/trimsokoli/Desktop/seven8nine"],
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3000", "-d", "/Users/trimsokoli/Desktop/seven8nine"],
       "port": 3000
     }
   ]
