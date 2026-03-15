@@ -108,17 +108,8 @@
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, this.dotSize * dot.scale, 0, Math.PI * 2);
 
-        // Color dots near cursor with accent
-        if (dist < this.radius) {
-          const force = 1 - dist / this.radius;
-          const r = this.lightMode ? Math.round(lerp(0, 122, force)) : Math.round(lerp(255, 174, force));
-          const g = this.lightMode ? Math.round(lerp(0, 154, force)) : Math.round(lerp(255, 209, force));
-          const b = this.lightMode ? Math.round(lerp(0, 30, force)) : Math.round(lerp(255, 54, force));
-          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${dot.alpha})`;
-        } else {
-          const c = this.lightMode ? '0, 0, 0' : '255, 255, 255';
-          ctx.fillStyle = `rgba(${c}, ${dot.alpha})`;
-        }
+        const c = this.lightMode ? '0, 0, 0' : '255, 255, 255';
+        ctx.fillStyle = `rgba(${c}, ${dot.alpha})`;
         ctx.fill();
       }
     }
@@ -634,7 +625,7 @@
   /* --- Staggered Work Card Reveals --- */
   class WorkReveal {
     constructor() {
-      const cards = document.querySelectorAll('.work-card, .work-featured');
+      const cards = document.querySelectorAll('.work-card, .work-featured, .work-item');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -667,8 +658,8 @@
           position: absolute;
           width: ${size}px;
           height: ${size}px;
-          background: var(--accent);
-          opacity: ${0.04 + Math.random() * 0.08};
+          background: var(--text);
+          opacity: ${0.02 + Math.random() * 0.04};
           z-index: 1;
           pointer-events: none;
           left: ${10 + Math.random() * 80}%;
@@ -792,7 +783,7 @@
     constructor() {
       this.el = document.getElementById('heroRotating');
       if (!this.el) return;
-      this.words = ['products', 'experiences', 'brands', 'futures', 'stories'];
+      this.words = ['work', 'sell', 'last', 'scale', 'ship'];
       this.current = 0;
       this.interval = setInterval(() => this.next(), 3000);
     }
@@ -899,7 +890,7 @@
       this.bar = document.createElement('div');
       this.bar.style.cssText = `
         position: fixed; top: 0; left: 0; height: 2px; z-index: 9999;
-        background: linear-gradient(90deg, #aed136, #36d1ae);
+        background: var(--accent);
         transform-origin: left;
         transform: scaleX(0); pointer-events: none;
         transition: none; width: 100%;
@@ -940,7 +931,7 @@
     constructor() {
       if (window.innerWidth < 768) return;
 
-      document.querySelectorAll('.work-card, .work-featured, .testimonial-card, .process__step, .team-card, .value-item').forEach(card => {
+      document.querySelectorAll('.work-card, .work-featured, .work-item, .testimonial-card, .process__step, .team-card, .value-item').forEach(card => {
         card.addEventListener('mousemove', (e) => {
           const rect = card.getBoundingClientRect();
           const x = e.clientX - rect.left;
@@ -954,7 +945,7 @@
             glow.style.cssText = `
               position: absolute; top: 0; left: 0; right: 0; bottom: 0;
               pointer-events: none; z-index: 0;
-              background: radial-gradient(300px circle at var(--glow-x) var(--glow-y), rgba(174,209,54,0.06), transparent 60%);
+              background: radial-gradient(300px circle at var(--glow-x) var(--glow-y), rgba(255,255,255,0.03), transparent 60%);
               transition: opacity 0.3s;
             `;
             card.style.position = 'relative';
@@ -1051,6 +1042,164 @@
     }
   }
 
+  /* --- Clip Path Reveal on Scroll --- */
+  class ClipReveal {
+    constructor() {
+      this.els = [];
+
+      document.querySelectorAll('[data-clip]').forEach(el => {
+        const type = el.dataset.clip;
+        if (type === 'up') el.classList.add('clip-reveal');
+        if (type === 'left') el.classList.add('slide-reveal-left');
+        if (type === 'right') el.classList.add('slide-reveal-right');
+        if (type === 'zoom') el.classList.add('zoom-reveal');
+        this.els.push(el);
+      });
+
+      // Use RAF scroll check — more reliable than IntersectionObserver for clip-path elements
+      Raf.add(() => this.check());
+    }
+
+    check() {
+      const wh = window.innerHeight;
+      for (let i = this.els.length - 1; i >= 0; i--) {
+        const el = this.els[i];
+        const rect = el.getBoundingClientRect();
+        if (rect.top < wh * 0.92 && rect.bottom > 0) {
+          const delay = el.dataset.clipDelay || 0;
+          if (delay > 0) {
+            setTimeout(() => el.classList.add('revealed'), delay * 1000);
+          } else {
+            el.classList.add('revealed');
+          }
+          this.els.splice(i, 1);
+        }
+      }
+      if (!this.els.length) Raf.remove(this.check);
+    }
+  }
+
+  /* --- Section Fold-In on Scroll --- */
+  class SectionFold {
+    constructor() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.05 });
+
+      document.querySelectorAll('.section-fold').forEach(el => observer.observe(el));
+
+      // Initial check
+      requestAnimationFrame(() => {
+        document.querySelectorAll('.section-fold').forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add('revealed');
+          }
+        });
+      });
+    }
+  }
+
+  /* --- Service Accordion Slide Reveal --- */
+  class ServiceReveal {
+    constructor() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      document.querySelectorAll('.service-accord').forEach(el => observer.observe(el));
+    }
+  }
+
+  /* --- Image Parallax on Scroll --- */
+  class ImageParallax {
+    constructor() {
+      this.images = [];
+      document.querySelectorAll('.work-card__img img, .work-featured__img img, .work-item__img img, .project-image__inner img').forEach(img => {
+        this.images.push(img);
+      });
+
+      if (this.images.length) {
+        Raf.add(() => this.update());
+      }
+    }
+
+    update() {
+      const wh = window.innerHeight;
+      for (const img of this.images) {
+        const rect = img.getBoundingClientRect();
+        if (rect.top < wh && rect.bottom > 0) {
+          const progress = (rect.top + rect.height / 2 - wh / 2) / wh;
+          const y = progress * -30;
+          img.style.transform = `translateY(${y}px) scale(1.1)`;
+        }
+      }
+    }
+  }
+
+  /* --- Smooth Spring Counter --- */
+  class SpringCounter {
+    constructor() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseInt(el.dataset.count);
+            const suffix = el.dataset.suffix || '';
+            let current = 0;
+            const spring = () => {
+              current += (target - current) * 0.06;
+              if (Math.abs(target - current) < 0.5) {
+                el.textContent = target + suffix;
+                return;
+              }
+              el.textContent = Math.round(current) + suffix;
+              requestAnimationFrame(spring);
+            };
+            requestAnimationFrame(spring);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      document.querySelectorAll('[data-count]').forEach(el => observer.observe(el));
+    }
+  }
+
+  /* --- Section Scale on Enter --- */
+  class SectionScale {
+    constructor() {
+      this.sections = document.querySelectorAll('.work, .services, .process, .about, .testimonials');
+      if (!this.sections.length) return;
+
+      Raf.add(() => this.update());
+    }
+
+    update() {
+      const wh = window.innerHeight;
+      this.sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < wh && rect.bottom > 0) {
+          const progress = clamp((wh - rect.top) / (wh * 0.4), 0, 1);
+          const scale = 0.97 + progress * 0.03;
+          const opacity = 0.6 + progress * 0.4;
+          section.style.transform = `scale(${scale})`;
+          section.style.opacity = opacity;
+        }
+      });
+    }
+  }
+
   /* --- Init --- */
   document.addEventListener('DOMContentLoaded', () => {
     // Character split the hero title BEFORE loader finishes
@@ -1090,6 +1239,11 @@
       new VelocityText();
       new CardGlow();
       new FilterButtons();
+      new ClipReveal();
+      new SectionFold();
+      new ServiceReveal();
+      new ImageParallax();
+      new SectionScale();
 
       // Reveal hero characters
       CharSplit.reveal();
