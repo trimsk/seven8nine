@@ -48,7 +48,7 @@
       this.gap = 40;
       this.dotSize = 1;
       this.radius = 180;
-      this.lightMode = false;
+      this.lightMode = !document.documentElement.hasAttribute('data-theme') || document.documentElement.getAttribute('data-theme') !== 'dark';
       window.__dotGrid = this;
       this.resize();
       window.addEventListener('resize', () => this.resize());
@@ -732,10 +732,10 @@
     constructor() {
       this.btn = document.getElementById('themeToggle');
       if (!this.btn) return;
-      this.isDark = true;
+      this.isDark = false;
 
       const saved = localStorage.getItem('s8n-theme');
-      if (saved === 'light') this.setLight(false);
+      if (saved === 'dark') this.setDark(false);
 
       this.btn.addEventListener('click', () => {
         if (this.isDark) this.setLight(true);
@@ -745,7 +745,7 @@
 
     setLight(animate) {
       this.isDark = false;
-      document.documentElement.setAttribute('data-theme', 'light');
+      document.documentElement.removeAttribute('data-theme');
       localStorage.setItem('s8n-theme', 'light');
       if (window.__dotGrid) window.__dotGrid.lightMode = true;
       if (animate) this.flashTransition();
@@ -753,7 +753,7 @@
 
     setDark(animate) {
       this.isDark = true;
-      document.documentElement.removeAttribute('data-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem('s8n-theme', 'dark');
       if (window.__dotGrid) window.__dotGrid.lightMode = false;
       if (animate) this.flashTransition();
@@ -1205,9 +1205,9 @@
     // Character split the hero title BEFORE loader finishes
     new CharSplit();
 
-    // Apply saved theme before loader
+    // Apply saved theme before loader (light is default)
     const savedTheme = localStorage.getItem('s8n-theme');
-    if (savedTheme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    if (savedTheme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
 
     new PageTransition();
 
