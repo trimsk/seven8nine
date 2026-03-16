@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Work — seven8nine</title>
-  <link rel="stylesheet" href="css/style.css?v=19">
+  <link rel="stylesheet" href="css/style.css?v=20">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -52,16 +52,19 @@
       margin: 0 auto;
       padding: 0 48px 6rem;
     }
-    .work-page-grid .work__grid {
+    .work-page-grid .work-page__grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 16px;
     }
-    .work-page-grid .work-card {
-      transform: none;
+
+    /* Work page items — uniform grid, no special nth-child layout */
+    .work-page-grid .work-item {
+      grid-column: auto;
+      grid-row: auto;
     }
-    .work-page-grid .work-card--offset {
-      transform: none;
+    .work-page-grid .work-item__img {
+      min-height: 360px;
     }
 
     /* Big Statement */
@@ -83,7 +86,7 @@
     }
 
     @media (max-width: 768px) {
-      .work-page-grid .work__grid {
+      .work-page-grid .work-page__grid {
         grid-template-columns: 1fr;
       }
       .work-filter__inner {
@@ -95,6 +98,7 @@
         font-size: 10px;
       }
       .work-page-grid { padding: 0 24px 4rem; }
+      .work-page-grid .work-item__img { min-height: 280px; }
       .work-statement { padding: 80px 24px; }
     }
   </style>
@@ -198,157 +202,93 @@
 
   <!-- Work Grid -->
   <div class="work-page-grid">
-    <div class="work__grid">
+    <div class="work-page__grid">
 
       <!-- 01 — Nexus Platform -->
-      <a href="project.html" class="work-card" data-cursor="View" data-category="web-design development">
-        <div class="work-card__img-wrap">
-          <div class="work-card__img" style="background:#111827">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop" alt="Nexus Platform" style="width:100%;height:100%;object-fit:cover;display:block;">
-            <div class="work-card__overlay">
-              <span class="work-card__category mono">Web Design + Development</span>
-            </div>
-          </div>
+      <a href="project.html" class="work-item" data-cursor="View" data-category="web-design development">
+        <div class="work-item__img">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop" alt="Nexus Platform" loading="lazy">
         </div>
-        <div class="work-card__info">
-          <h3 class="work-card__title">Nexus Platform</h3>
-          <div class="work-card__meta">
-            <span class="mono">2024</span>
-            <span class="work-card__result">+40% engagement</span>
-          </div>
+        <div class="work-item__overlay">
+          <span class="work-item__cat mono">Web Design + Development</span>
+          <h3 class="work-item__title">Nexus Platform</h3>
         </div>
       </a>
 
       <!-- 02 — Verde Health -->
-      <a href="project.html" class="work-card" data-cursor="View" data-category="branding">
-        <div class="work-card__img-wrap">
-          <div class="work-card__img" style="background:#0c1f1a">
-            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop" alt="Verde Health" style="width:100%;height:100%;object-fit:cover;display:block;">
-            <div class="work-card__overlay">
-              <span class="work-card__category mono">Brand Identity + Strategy</span>
-            </div>
-          </div>
+      <a href="project.html" class="work-item" data-cursor="View" data-category="branding">
+        <div class="work-item__img">
+          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop" alt="Verde Health" loading="lazy">
         </div>
-        <div class="work-card__info">
-          <h3 class="work-card__title">Verde Health</h3>
-          <div class="work-card__meta">
-            <span class="mono">2024</span>
-            <span class="work-card__result">Full rebrand</span>
-          </div>
+        <div class="work-item__overlay">
+          <span class="work-item__cat mono">Brand Identity + Strategy</span>
+          <h3 class="work-item__title">Verde Health</h3>
         </div>
       </a>
 
       <!-- 03 — Aura Store -->
-      <a href="project.html" class="work-card" data-cursor="View" data-category="e-commerce web-design">
-        <div class="work-card__img-wrap">
-          <div class="work-card__img" style="background:#1a0e2e">
-            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop" alt="Aura Store" style="width:100%;height:100%;object-fit:cover;display:block;">
-            <div class="work-card__overlay">
-              <span class="work-card__category mono">E-Commerce + UI/UX</span>
-            </div>
-          </div>
+      <a href="project.html" class="work-item" data-cursor="View" data-category="e-commerce web-design">
+        <div class="work-item__img">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop" alt="Aura Store" loading="lazy">
         </div>
-        <div class="work-card__info">
-          <h3 class="work-card__title">Aura Store</h3>
-          <div class="work-card__meta">
-            <span class="mono">2023</span>
-            <span class="work-card__result">3x conversion</span>
-          </div>
+        <div class="work-item__overlay">
+          <span class="work-item__cat mono">E-Commerce + UI/UX</span>
+          <h3 class="work-item__title">Aura Store</h3>
         </div>
       </a>
 
       <!-- 04 — Flowstate -->
-      <a href="project.html" class="work-card" data-cursor="View" data-category="development">
-        <div class="work-card__img-wrap">
-          <div class="work-card__img" style="background:#1a1a1a">
-            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop" alt="Flowstate" style="width:100%;height:100%;object-fit:cover;display:block;">
-            <div class="work-card__overlay">
-              <span class="work-card__category mono">Product + Development</span>
-            </div>
-          </div>
+      <a href="project.html" class="work-item" data-cursor="View" data-category="development">
+        <div class="work-item__img">
+          <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop" alt="Flowstate" loading="lazy">
         </div>
-        <div class="work-card__info">
-          <h3 class="work-card__title">Flowstate</h3>
-          <div class="work-card__meta">
-            <span class="mono">2023</span>
-            <span class="work-card__result">0 &rarr; 10K users</span>
-          </div>
+        <div class="work-item__overlay">
+          <span class="work-item__cat mono">Product + Development</span>
+          <h3 class="work-item__title">Flowstate</h3>
         </div>
       </a>
 
       <!-- 05 — Ember Fitness -->
-      <a href="project.html" class="work-card" data-cursor="View" data-category="branding web-design">
-        <div class="work-card__img-wrap">
-          <div class="work-card__img" style="background:#1a0a0a">
-            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=600&fit=crop" alt="Ember Fitness" style="width:100%;height:100%;object-fit:cover;display:block;">
-            <div class="work-card__overlay">
-              <span class="work-card__category mono">App Design + Branding</span>
-            </div>
-          </div>
+      <a href="project.html" class="work-item" data-cursor="View" data-category="branding web-design">
+        <div class="work-item__img">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=600&fit=crop" alt="Ember Fitness" loading="lazy">
         </div>
-        <div class="work-card__info">
-          <h3 class="work-card__title">Ember Fitness</h3>
-          <div class="work-card__meta">
-            <span class="mono">2023</span>
-            <span class="work-card__result">200K downloads</span>
-          </div>
+        <div class="work-item__overlay">
+          <span class="work-item__cat mono">App Design + Branding</span>
+          <h3 class="work-item__title">Ember Fitness</h3>
         </div>
       </a>
 
       <!-- 06 — Cosmos AI -->
-      <a href="project.html" class="work-card" data-cursor="View" data-category="web-design development">
-        <div class="work-card__img-wrap">
-          <div class="work-card__img" style="background:#0a0a1a">
-            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="Cosmos AI" style="width:100%;height:100%;object-fit:cover;display:block;">
-            <div class="work-card__overlay">
-              <span class="work-card__category mono">Web Design + Development</span>
-            </div>
-          </div>
+      <a href="project.html" class="work-item" data-cursor="View" data-category="web-design development">
+        <div class="work-item__img">
+          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="Cosmos AI" loading="lazy">
         </div>
-        <div class="work-card__info">
-          <h3 class="work-card__title">Cosmos AI</h3>
-          <div class="work-card__meta">
-            <span class="mono">2024</span>
-            <span class="work-card__result">Series A launch</span>
-          </div>
+        <div class="work-item__overlay">
+          <span class="work-item__cat mono">Web Design + Development</span>
+          <h3 class="work-item__title">Cosmos AI</h3>
         </div>
       </a>
 
       <!-- 07 — Meridian Finance -->
-      <a href="project.html" class="work-card" data-cursor="View" data-category="branding e-commerce">
-        <div class="work-card__img-wrap">
-          <div class="work-card__img" style="background:#1a1a0a">
-            <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&h=600&fit=crop" alt="Meridian Finance" style="width:100%;height:100%;object-fit:cover;display:block;">
-            <div class="work-card__overlay">
-              <span class="work-card__category mono">Branding + Web Platform</span>
-            </div>
-          </div>
+      <a href="project.html" class="work-item" data-cursor="View" data-category="branding e-commerce">
+        <div class="work-item__img">
+          <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&h=600&fit=crop" alt="Meridian Finance" loading="lazy">
         </div>
-        <div class="work-card__info">
-          <h3 class="work-card__title">Meridian Finance</h3>
-          <div class="work-card__meta">
-            <span class="mono">2024</span>
-            <span class="work-card__result">+60% signups</span>
-          </div>
+        <div class="work-item__overlay">
+          <span class="work-item__cat mono">Branding + Web Platform</span>
+          <h3 class="work-item__title">Meridian Finance</h3>
         </div>
       </a>
 
       <!-- 08 — Pulse Music -->
-      <a href="project.html" class="work-card" data-cursor="View" data-category="development web-design">
-        <div class="work-card__img-wrap">
-          <div class="work-card__img" style="background:#1a0a1a">
-            <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&h=600&fit=crop" alt="Pulse Music" style="width:100%;height:100%;object-fit:cover;display:block;">
-            <div class="work-card__overlay">
-              <span class="work-card__category mono">Development + Web Design</span>
-            </div>
-          </div>
+      <a href="project.html" class="work-item" data-cursor="View" data-category="development web-design">
+        <div class="work-item__img">
+          <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&h=600&fit=crop" alt="Pulse Music" loading="lazy">
         </div>
-        <div class="work-card__info">
-          <h3 class="work-card__title">Pulse Music</h3>
-          <div class="work-card__meta">
-            <span class="mono">2023</span>
-            <span class="work-card__result">500K streams/mo</span>
-          </div>
+        <div class="work-item__overlay">
+          <span class="work-item__cat mono">Development + Web Design</span>
+          <h3 class="work-item__title">Pulse Music</h3>
         </div>
       </a>
 
@@ -356,16 +296,7 @@
   </div>
 
   <!-- Big Statement -->
-  <section class="work-statement" data-reveal-fade style="position:relative;">
-    <div class="pixel-8-watermark" style="left:48px;right:auto;opacity:0.03;" aria-hidden="true">
-      <div class="px" style="grid-area:1/2/2/5"></div>
-      <div class="px" style="grid-area:2/1/4/2"></div>
-      <div class="px" style="grid-area:2/5/4/6"></div>
-      <div class="px" style="grid-area:4/2/5/5"></div>
-      <div class="px" style="grid-area:5/1/7/2"></div>
-      <div class="px" style="grid-area:5/5/7/6"></div>
-      <div class="px" style="grid-area:7/2/8/5"></div>
-    </div>
+  <section class="work-statement" data-reveal-fade>
     <div class="work-statement__text">
       Every project is a chance to prove that <span class="accent-word">great design</span> and <span class="accent-word">great engineering</span> aren't mutually exclusive.
     </div>
@@ -454,7 +385,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=19"></script>
+  <script src="js/main.js?v=20"></script>
   <script>
     // Filter functionality
     document.querySelectorAll('.work-filter__btn').forEach(btn => {
@@ -462,7 +393,7 @@
         document.querySelectorAll('.work-filter__btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const filter = btn.dataset.filter;
-        document.querySelectorAll('.work-card').forEach(card => {
+        document.querySelectorAll('.work-item').forEach(card => {
           if (filter === 'all' || (card.dataset.category && card.dataset.category.includes(filter))) {
             card.style.display = '';
           } else {
