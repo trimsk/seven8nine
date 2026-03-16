@@ -19,7 +19,19 @@
       "Bash(command -v npm)",
       "Bash(command -v node)",
       "Bash(command -v brew)",
-      "Bash(ls -la /Users/trimsokoli/Desktop/seven8nine/*.html)"
+      "Bash(ls -la /Users/trimsokoli/Desktop/seven8nine/*.html)",
+      "Bash(git rm:*)",
+      "Bash(curl -fsSL https://get.vercel.app/install.sh)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(for f:*)",
+      "Bash(do sed:*)",
+      "Bash(done)",
+      "Bash(/usr/bin/python3 --version)",
+      "Bash(/usr/local/bin/python3 --version)",
+      "Bash(/opt/homebrew/bin/python3 --version)",
+      "Read(//usr/bin/**)"
     ]
   }
 }

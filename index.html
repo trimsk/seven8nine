@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>seven8nine — Digital Studio</title>
-  <link rel="stylesheet" href="css/style.css?v=16">
+  <link rel="stylesheet" href="css/style.css?v=18">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -186,7 +186,6 @@
   <section class="work" id="work">
     <div class="container">
       <div class="section-head section-head--between">
-        <span class="mono" data-reveal-fade>Selected Work</span>
         <a href="work.html" class="btn-line btn-line--sm" data-magnetic data-reveal-fade>
           <span>All projects</span>
           <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M3 17L17 3M17 3H5M17 3V15" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -271,8 +270,17 @@
   <!-- Services -->
   <section class="services" id="services">
     <div class="container">
-      <div class="section-head section-fold">
-        <span class="mono" data-reveal-fade>What We Do</span>
+      <div class="section-head section-fold" style="position:relative;">
+        <!-- Pixel 8 fragment -->
+        <div class="pixel-8-watermark" aria-hidden="true">
+          <div class="px" style="grid-area:1/2/2/5"></div>
+          <div class="px" style="grid-area:2/1/4/2"></div>
+          <div class="px" style="grid-area:2/5/4/6"></div>
+          <div class="px" style="grid-area:4/2/5/5"></div>
+          <div class="px" style="grid-area:5/1/7/2"></div>
+          <div class="px" style="grid-area:5/5/7/6"></div>
+          <div class="px" style="grid-area:7/2/8/5"></div>
+        </div>
         <h2 class="section-title">
           <span class="line"><span class="line__inner" data-reveal>Services</span></span>
         </h2>
@@ -289,6 +297,10 @@
               <span></span><span></span>
             </div>
           </button>
+          <div class="service-accord__preview">
+            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=560&h=360&fit=crop" alt="Design preview" loading="lazy">
+            <div class="service-accord__preview-gradient"></div>
+          </div>
           <div class="service-accord__body">
             <div class="service-accord__content">
               <p>We design interfaces. Not mood boards, not abstract concepts. Actual screens you can click through. Figma to production-ready, usually in weeks. We share files in real-time so there are no surprises at the end.</p>
@@ -306,6 +318,10 @@
               <span></span><span></span>
             </div>
           </button>
+          <div class="service-accord__preview">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=560&h=360&fit=crop" alt="Development preview" loading="lazy">
+            <div class="service-accord__preview-gradient"></div>
+          </div>
           <div class="service-accord__body">
             <div class="service-accord__content">
               <p>React, Next.js, Svelte, whatever fits the project. We write the frontend, the backend, and handle deployment. You get staging links from day one. No WordPress templates, no page builders. Real code that scales.</p>
@@ -323,6 +339,10 @@
               <span></span><span></span>
             </div>
           </button>
+          <div class="service-accord__preview">
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=560&h=360&fit=crop" alt="Branding preview" loading="lazy">
+            <div class="service-accord__preview-gradient"></div>
+          </div>
           <div class="service-accord__body">
             <div class="service-accord__content">
               <p>Logos, guidelines, tone of voice. The whole package or just the parts you need. We've named three companies that people actually remember. Strategy first, then we make it look good.</p>
@@ -340,6 +360,10 @@
               <span></span><span></span>
             </div>
           </button>
+          <div class="service-accord__preview">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=560&h=360&fit=crop" alt="Growth preview" loading="lazy">
+            <div class="service-accord__preview-gradient"></div>
+          </div>
           <div class="service-accord__body">
             <div class="service-accord__content">
               <p>We track what matters, fix what's broken, and test everything else. Your Google Analytics is probably set up wrong. We'll fix that, then we'll fix your conversion rate.</p>
@@ -354,7 +378,6 @@
   <section class="process" id="process">
     <div class="container">
       <div class="section-head section-fold">
-        <span class="mono" data-reveal-fade>How It Works</span>
         <h2 class="section-title">
           <span class="line"><span class="line__inner" data-reveal>Process</span></span>
         </h2>
@@ -418,9 +441,6 @@
   <!-- About -->
   <section class="about" id="about">
     <div class="container">
-      <div class="section-head">
-        <span class="mono" data-reveal-fade>About</span>
-      </div>
       <div class="about__hero-text section-fold">
         <h2 class="about__title">
           <span class="line"><span class="line__inner" data-reveal>Small team.</span></span>
@@ -487,7 +507,6 @@
   <section class="testimonials" id="testimonials">
     <div class="container">
       <div class="section-head">
-        <span class="mono" data-reveal-fade>What People Say</span>
         <h2 class="section-title">
           <span class="line"><span class="line__inner" data-reveal>Kind words</span></span>
         </h2>
@@ -545,12 +564,19 @@
   </section>
 
   <!-- Contact -->
-  <section class="contact" id="contact">
+  <section class="contact" id="contact" style="position:relative;">
+    <!-- Large pixel-8 watermark -->
+    <div aria-hidden="true" style="position:absolute;right:80px;top:50%;transform:translateY(-50%);display:grid;grid-template-columns:repeat(5,16px);grid-template-rows:repeat(7,16px);gap:4px;opacity:0.03;pointer-events:none;">
+      <div class="px" style="grid-area:1/2/2/5;background:var(--accent);border-radius:2px;"></div>
+      <div class="px" style="grid-area:2/1/4/2;background:var(--accent);border-radius:2px;"></div>
+      <div class="px" style="grid-area:2/5/4/6;background:var(--accent);border-radius:2px;"></div>
+      <div class="px" style="grid-area:4/2/5/5;background:var(--accent);border-radius:2px;"></div>
+      <div class="px" style="grid-area:5/1/7/2;background:var(--accent);border-radius:2px;"></div>
+      <div class="px" style="grid-area:5/5/7/6;background:var(--accent);border-radius:2px;"></div>
+      <div class="px" style="grid-area:7/2/8/5;background:var(--accent);border-radius:2px;"></div>
+    </div>
     <div class="container">
       <div class="contact__inner">
-        <div class="section-head">
-          <span class="mono" data-reveal-fade>New Business</span>
-        </div>
         <h2 class="contact__title">
           <span class="line"><span class="line__inner" data-reveal>Have something</span></span>
           <span class="line"><span class="line__inner" data-reveal>in mind?</span></span>
@@ -601,7 +627,18 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <span class="mono footer__copy">&copy; 2025 seven8nine</span>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div class="footer__pixel-8" aria-hidden="true">
+            <div class="px" style="grid-area:1/2/2/5"></div>
+            <div class="px" style="grid-area:2/1/4/2"></div>
+            <div class="px" style="grid-area:2/5/4/6"></div>
+            <div class="px" style="grid-area:4/2/5/5"></div>
+            <div class="px" style="grid-area:5/1/7/2"></div>
+            <div class="px" style="grid-area:5/5/7/6"></div>
+            <div class="px" style="grid-area:7/2/8/5"></div>
+          </div>
+          <span class="mono footer__copy">&copy; 2025 seven8nine. All rights reserved.</span>
+        </div>
         <a href="#hero" class="footer__back-top" data-magnetic>
           <span class="mono">Top</span>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 14V2M8 2L2 8M8 2L14 8" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -610,6 +647,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=16"></script>
+  <script src="js/main.js?v=18"></script>
 </body>
 </html>
